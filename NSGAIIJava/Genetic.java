@@ -1,8 +1,6 @@
 import java.util.*;
 import java.io.*;
 
-
-
 public class Genetic {
 
     int NbVariable;

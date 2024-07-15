@@ -13,6 +13,7 @@ public class Solution implements Comparable<Solution>{
         FitnessValue = 0;
         valid = true;
         fitnessCalculated = false; 
+        
     
 
     }
