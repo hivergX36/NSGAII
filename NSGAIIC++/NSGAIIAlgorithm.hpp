@@ -886,23 +886,10 @@ displayPopulation();
         rankPopulation();
 
    displayPopulation();
-   for(int k = 0; k < Nbgen; k++){
-    definePopulationfront();
-    measureCrowdingDistance();
-    Tournament();
-   displayEchantillon();
-   for(int i = 0; i < 5; i++){
-      try{
-   CrossoverMutation();
-   }catch(int err){
-      std::cout << "Il y'a un problème dans la fonction";
-   }
-   };
- UpdateElitePopulation();
-   displayPopulation();
+  
 
    }
-}
-
-
 };
+
+
+

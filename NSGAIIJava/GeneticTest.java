@@ -32,5 +32,12 @@ public class GeneticTest{
         Assert.assertEquals(GeneticAlgorithm.NbConstraints, 2);    
     }
 
+    @Test
+    public void testNbojective(){
+        String file = "Knapsack.txt";
+        Genetic GeneticAlgorithm = new Genetic(file, 50, 20);
+        Assert.assertEquals(GeneticAlgorithm.NbObj, 2);    
+    }
+
 
 }

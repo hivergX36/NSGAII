@@ -4,8 +4,6 @@ import os
 
 
 fileName = "knapsack.txt"
-os.chdir("NSGAIIPython")
-print(os.getcwd()) 
 
 
 NSGAII = NSGAIIAlgorithm(30,10)

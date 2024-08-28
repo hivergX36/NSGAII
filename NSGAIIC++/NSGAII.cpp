@@ -1,6 +1,7 @@
 #include<iostream> 
 #include<vector> 
 #include<fstream> 
+#include<string>
 #include "NSGAIIAlgorithm.hpp"
 
 int main(){
@@ -8,7 +9,7 @@ int main(){
       
       /*La fonction checkup n'est pas bonne */
  
-   std::string file = "Knapsack.txt";
+   std::string file = "knapsack.txt";
    NSGAIIAlgorithme NSGAII = NSGAIIAlgorithme(file,5,1);
    /* NSGAII.initPopulation();
    NSGAII.computeExtremePoint();

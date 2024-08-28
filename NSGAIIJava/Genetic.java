@@ -7,11 +7,12 @@ public class Genetic {
     int NbConstraints;
     int IndCandidat;
     int NbPop;
-    int Nbind; 
+    int Nbind;
+    int NbObj; 
 
     
 
-    int[] Price;
+    int[][] Price;
     /* Utility function */
 
     /*Matrix of constraint*/
@@ -35,7 +36,7 @@ public class Genetic {
         this.Nbind = nbind;
         this.NbPop = nbpop;  
         Population = new Solution[this.NbPop];
-        Echantillon = new Solution[this.NbVariable];
+        Echantillon = new Solution[this.Nbind];
         
 
         File input = new File(name);
@@ -46,17 +47,26 @@ public class Genetic {
             String[] nums = reader.nextLine().split(",");
             this.NbVariable = Integer.parseInt(nums[0]);
             this.NbConstraints = Integer.parseInt(nums[1]);
-            this.Price = new int[this.NbVariable];
+            System.out.println(this.NbConstraints);
+
+            this.NbObj = Integer.parseInt(nums[2]);
+            System.out.println(this.NbObj);
+            this.Price = new int[this.NbObj][this.NbVariable];
             this.CostMatrix = new double[this.NbConstraints][this.NbVariable];
             this.constraint = new double[this.NbConstraints];
+            
+            
+            for(int i = 0; i < this.NbObj; i++){
+                nums = reader.nextLine().split(",");
+                System.out.println(i);
 
-            nums = reader.nextLine().split(",");
+                for(int j = 0; j < this.NbVariable; j++){
+                    System.out.println(j);
 
+                    System.out.println(nums[j]);
 
-
-            for(int i = 0; i < this.NbVariable; i++){
-                this.Price[i] = Integer.parseInt(nums[i]);
-        
+                    this.Price[i][j] = Integer.parseInt(nums[j]);
+                }
             }
 
                 for(int i = 0; i < this.NbConstraints; i++){
@@ -81,6 +91,7 @@ public class Genetic {
      }
 
   };
+
   
   
   public void displayCostMatrix(){
@@ -263,17 +274,25 @@ public class Genetic {
           }
 
     
-        void fitnessValuePop(/*std::vector<Solution> & Echantillon, int dim*/){
-            float fitnessvalue; 
+          void fitnessValuePop(/*std::vector<Solution> & Echantillon, int dim*/){
+            float fitnessvalue1; 
+            float fitnessvalue2;
             int compteur = 0;
             while(compteur < NbPop)
             {
-                fitnessvalue = 0; 
+                fitnessvalue1 = 0; 
+                fitnessvalue2 = 0; 
+
+            
                 if(Population[compteur].fitnessCalculated == false){
                     for(int i = 0; i < NbVariable; i++){
-                        fitnessvalue += Population[compteur].solution[i] * Price[i];
+                        fitnessvalue1 += Population[compteur].solution[i] * Price[0][i];
+                        fitnessvalue2 += Population[compteur].solution[i] * Price[1][i];
+
                     }
-                    Population[compteur].FitnessValue = fitnessvalue; 
+                    Population[compteur].FitnessValue1 = fitnessvalue1; 
+                    Population[compteur].FitnessValue2 = fitnessvalue2; 
+
                     Population[compteur].fitnessCalculated = true;
                 }
     
@@ -283,17 +302,26 @@ public class Genetic {
             }
         }
     
+
         void fitnessValueSample(){
-            float fitnessvalue; 
+            float fitnessvalue1; 
+            float fitnessvalue2; 
+
             int compteur = 0;
             while(compteur < Nbind)
             {
-                fitnessvalue = 0; 
+                fitnessvalue1 = 0; 
+                fitnessvalue2 = 0; 
+
                 if(Echantillon[compteur].fitnessCalculated == false){
                     for(int i = 0; i < NbVariable; i++){
-                        fitnessvalue += Echantillon[compteur].solution[i] * Price[i];
+                        fitnessvalue1 += Echantillon[compteur].solution[i] * Price[0][i];
+                        fitnessvalue2 += Echantillon[compteur].solution[i] * Price[0][i];
+
                     }
-                    Echantillon[compteur].FitnessValue = fitnessvalue; 
+                    Echantillon[compteur].FitnessValue1 = fitnessvalue1; 
+                    Echantillon[compteur].FitnessValue2 = fitnessvalue2; 
+
                     Echantillon[compteur].fitnessCalculated = true;
                 }
     
